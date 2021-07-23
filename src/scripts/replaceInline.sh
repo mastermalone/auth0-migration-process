@@ -10,7 +10,7 @@ email0Update='"email_verified": false';
 email1Line='"email_verified" : 1';
 email1Update='"email_verified": true';
 pictureLine='"picture" : null,';
-pictureUpdate='"picture": "https://tongal.s3.amazonaws.com/resources/images/profile-pictures/default.jpg",';
+pictureUpdate='"picture": "https://some-picture.jpg",';
 yellow=`tput setaf 3`;
 nc=`tput sgr0`;
 

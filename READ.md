@@ -13,7 +13,7 @@ These values are read by the process within the curl-users.sh file. You can get 
 
 ## Step 1:
 
-Using a Database Client such as DBeaver, connect to the tongal DB and run the following SQL:
+Using a Database Client such as DBeaver, connect to the DB and run the following SQL:
 
 #### **NOTE: This will be updated to include social media information**
 
