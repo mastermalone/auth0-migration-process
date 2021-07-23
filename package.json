@@ -1,0 +1,21 @@
+{
+  "name": "insert-text",
+  "version": "1.0.0",
+  "description": "Insert text into files via node script",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "generate": "node src/scripts/genrateUpdatedJson.js"
+  },
+  "author": "mastermalone",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "server": "^1.0.33"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "random-words": "^1.1.1"
+  }
+}

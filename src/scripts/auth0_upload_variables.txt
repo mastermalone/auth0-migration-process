@@ -1,0 +1,5 @@
+TENANT_URL=https://tenant
+
+BEARER_TOKEN=token_stuff_goes_here
+
+CONNECTION_ID=auth0_tenant_connection_id_goes_here
