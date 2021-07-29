@@ -31,8 +31,8 @@ function curlUsersToAuth0 () {
   else
     touch curl_erros.txt;
 
-    echo "Not such file $json_file.  No users have been migrated from this file.";
-    echo "Not such file $json_file.  No users have been migrated from this file." >> curl_erros.txt;
+    echo "No such file $json_file.  No users have been migrated from this file.";
+    echo "No such file $json_file.  No users have been migrated from this file." >> curl_erros.txt;
     echo "You need to provide actual JSON files for this process to work.";
     exit 1;
   fi
