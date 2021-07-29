@@ -10,7 +10,7 @@ email0Update='"email_verified": false';
 email1Line='"email_verified" : 1';
 email1Update='"email_verified": true';
 pictureLine='"picture" : null,';
-pictureUpdate='"picture": "https://some-picture.jpg",';
+pictureUpdate='"picture": "https://path/to/image.jpg",';
 yellow=`tput setaf 3`;
 nc=`tput sgr0`;
 
@@ -20,13 +20,10 @@ unnecessaryLine="SELECT";
 emptyLine="";
 erroneousFinalClosingBracket="]}";
 
-targetFolder=../split-to-300k/original-300k-files;
+targetFolder=($(dirname "$PWD")/split-to-300k/original-300k-files);
 
 function replaceInline() {
-  echo "Hello $file";
-  #Ignore the header
-  # exec < $file;
-  # read header;
+  echo "Starting replace inline process...";
 
   fileCount=0;
   linesUpdated=0;
@@ -45,7 +42,7 @@ function replaceInline() {
   # Start Updated script which correctly opens and closes the exported JSON files
   if [[ -d $targetFolder ]];
   then
-    echo "Found the folder";
+    echo "Found the $targetFolder directory";
 
     count=0;
 
@@ -105,14 +102,15 @@ function replaceInline() {
         echo "The process has finished with a total of $linesUpdated lines updated including the $json_file file";
         echo "The process has finished with a total of $linesUpdated lines updated including the $json_file file" >> results.txt;
       else
-        echo "No files found";
+        echo ${yellow}"No JSON files found.  Be sure that the $targetFolder contains the exported JSON files."${nc};
+        exit 0;
       fi
       # Insert closing bracket at end of file
       echo $closingBracket >> $json_file;
     done
     wait
   else
-    echo "ERROR: No folder by that name exists";
+    echo ${yellow}"ERROR: The $targetFolder directory does not exist"${nc};
   fi
 
   # End Updated script

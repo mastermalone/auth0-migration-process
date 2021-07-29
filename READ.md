@@ -8,8 +8,8 @@ Before you begin, make sure that you have updated the
 auth0_upload_variables.txt
 ```
 
-file with the desired values for the **TENANT_URL** and the **BEARER_TOKEN**.
-These values are read by the process within the curl-users.sh file. You can get a new token from Auth0 and add it as the value for BEARER_TOKEN.
+file with the desired values for the **TENANT_URL**, **CONNECTION_ID** and the **BEARER_TOKEN**.
+These values are read by the process within the curl-users.sh file. You can get a new token from Auth0 and add it as the value for BEARER_TOKEN.  Also be sure to run **_npm install_**
 
 ## Step 1:
 
@@ -18,7 +18,7 @@ Using a Database Client such as DBeaver, connect to the DB and run the following
 #### **NOTE: This will be updated to include social media information**
 
 ```
-SQL STUFF GOES HERE
+SQL SCRIPT To be determined in the clickup task
 ```
 
 ## Step 2:
@@ -35,7 +35,7 @@ In terminal, be sure to make the following files executable with chmod + x:
 
 ## Step 4:
 
-Run the **initMigration.sh** script in terminal (_./initMigration.sh_) and sit back and relax.
+From the **_src/scripts_** directory, run the **initMigration.sh** script in terminal (_./initMigration.sh_) and sit back and relax.
 
 ## NOTE:
 
