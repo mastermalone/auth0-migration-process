@@ -2,6 +2,7 @@
 # Loops through the files in the target directory and replaces the specified lines that match the variables
 # NOTE:  If the script seems like it's not updating the files, check the JSON fiels for the targeted keys and their values.  They must match exactly
 # Version update:  Removes the need for the .csv file
+source auth0_upload_variables.txt;
 file=$1;
 char=['!:@#$%^&*()_+'];
 # endOfTheLine=$mline | awk '{print $2}';
@@ -10,7 +11,7 @@ email0Update='"email_verified": false';
 email1Line='"email_verified" : 1';
 email1Update='"email_verified": true';
 pictureLine='"picture" : null,';
-pictureUpdate='"picture": "https://path/to/image.jpg",';
+pictureUpdate='"picture": "'$DEFAULT_PICTURE_URL'",';
 yellow=`tput setaf 3`;
 nc=`tput sgr0`;
 
