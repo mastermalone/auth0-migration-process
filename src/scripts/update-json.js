@@ -38,16 +38,20 @@ module.exports = {
                 item.app_metadata = {};
                 item.app_metadata.tng_id = item.app_metadata_tng_id;
 
-                // If there are social login ID's, add them
+                // If there are social login ID's, or the universal ID add them
                 item.app_metadata_facebook_id !== null &&
                   (item.app_metadata.facebook_id =
                     item.app_metadata_facebook_id);
                 item.app_metadata_twitter_id !== null &&
                   (item.app_metadata.twitter_id = item.app_metadata_twitter_id);
+                item.app_metadata_tng_universal_id !== null &&
+                  (item.app_metadata.universal_id =
+                    item.app_metadata_tng_universal_id);
 
                 delete item.app_metadata_tng_id;
                 delete item.app_metadata_facebook_id;
                 delete item.app_metadata_twitter_id;
+                delete item.app_metadata_tng_universal_id;
               }
 
               return item;
@@ -67,7 +71,7 @@ module.exports = {
 
             console.log('Files updated:', idx + 1);
           } catch (err) {
-            console.log('An Error happend while updating the file', err);
+            console.log('An Error ocurred while updating the file', err);
           }
         })
       );
