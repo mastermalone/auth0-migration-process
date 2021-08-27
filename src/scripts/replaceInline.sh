@@ -23,6 +23,9 @@ erroneousFinalClosingBracket="]}";
 
 targetFolder=($(dirname "$PWD")/split-to-300k/original-300k-files);
 
+OS_NAME=`uname`;
+
+
 function replaceInline() {
   echo "Starting replace inline process...";
 
@@ -38,6 +41,19 @@ function replaceInline() {
   if [[ -f result-errors.txt ]];
   then
     rm result-errors.txt;
+  fi
+
+  if [[ $OS_NAME == "Darwin" ]];
+  then
+    if [[ -n $(command -v gsed) ]];
+    then
+      echo "Command, gsed is already installed. Continuing on with process";
+      SED_VERSION=gsed;
+      else
+        brew install gnu-sed && echo "install GNU Sed..." && SED_VERSION=gsed;
+    fi
+    else 
+      SED_VERSION=sed;
   fi
 
   # Start Updated script which correctly opens and closes the exported JSON files
@@ -56,9 +72,9 @@ function replaceInline() {
         firstLine="$(head -n 1 $json_file)";
 
         #Replace the first line in the file with an opening bracket
-        sed -i "0,/$firstLine/s//$openingBracket/" $json_file;
+        $SED_VERSION -i "0,/$firstLine/s//$openingBracket/" $json_file;
         # Remove the erroneous line at the end of the last file created by Dbeaver.
-        sed -i "/$erroneousFinalClosingBracket/d" $json_file;
+        $SED_VERSION -i "/$erroneousFinalClosingBracket/d" $json_file;
         
         # Read the file line by line
         while IFS=$'\n' read -r mline || [[ $mline ]];
@@ -66,7 +82,7 @@ function replaceInline() {
           if [[ "$mline" =~ $unnecessaryLine ]];
           then
             # Remove the unnecessary line from the first generated JSON file
-            sed -i "/$unnecessaryLine/d" $json_file;
+            $SED_VERSION -i "/$unnecessaryLine/d" $json_file;
             echo "FOUND THE SELECT statement and removed it.";
             linesUpdated=`expr $linesUpdated + 1`;
           fi
@@ -77,7 +93,7 @@ function replaceInline() {
             # echo "found a match for email verified 0: $mline";
             # the @ before the 's' is the delimiter.  It can be anything you want such as a |
             # This was done to prevent the script from choking on values that contained double quotes
-            sed -i "s@$mline@$email0Update@" $json_file;
+            $SED_VERSION -i "s@$mline@$email0Update@" $json_file;
             linesUpdated=`expr $linesUpdated + 1`;
           fi
 
@@ -85,7 +101,7 @@ function replaceInline() {
           if [[ "$mline" =~ $email1Line ]];
           then
             # echo "found a match for email verified 1: $mline";
-            sed -i "s@$mline@$email1Update@" $json_file;
+            $SED_VERSION -i "s@$mline@$email1Update@" $json_file;
             linesUpdated=`expr $linesUpdated + 1`;
           fi
 
@@ -93,7 +109,7 @@ function replaceInline() {
           if [[ "$mline" =~ $pictureLine ]];
           then
             # echo "found a picture: $mline";
-            sed -i "s@$mline@$pictureUpdate@" $json_file;
+            $SED_VERSION -i "s@$mline@$pictureUpdate@" $json_file;
             linesUpdated=`expr $linesUpdated + 1`;
           fi
           # echo "";

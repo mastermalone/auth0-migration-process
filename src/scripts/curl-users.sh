@@ -24,8 +24,8 @@ function curlUsersToAuth0 () {
   then
     echo "Sending users to Auth0 from file: $json_file...";
   curl --request POST \
-    --url '"'"$TENANT_URL"'"' \
-    --header 'authorization: Bearer' "$BEARER_TOKEN"'' \
+    --url "$TENANT_URL" \
+    --header "authorization: Bearer $BEARER_TOKEN" \
     --form users=@"$json_file" \
     --form connection_id=$CONNECTION_ID
   else

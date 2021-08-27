@@ -1,3 +1,4 @@
 node_modules/
 src/scripts/results.txt
 src/scripts/result-errors.txt
+src/split-to-300k/
