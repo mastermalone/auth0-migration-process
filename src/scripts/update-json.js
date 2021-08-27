@@ -73,10 +73,13 @@ module.exports = {
                 delete item.salt_value;
               }
 
-              //If these key is empty or full of empty space, delete them.
+              //If these keys are empty, null or full of empty space, delete them.
               !/[a-zA-Z]/.test(item.name) && delete item.name;
               !/[a-zA-Z]/.test(item.given_name) && delete item.given_name;
               !/[a-zA-Z]/.test(item.family_name) && delete item.family_name;
+              typeof item.name === 'object' && delete item.name;
+              typeof item.given_name === 'object' && delete item.given_name;
+              typeof item.family_name === 'object' && delete item.family_name;
 
               return item;
             });
