@@ -45,7 +45,7 @@ module.exports = {
                 item.app_metadata_twitter_id !== null &&
                   (item.app_metadata.twitter_id = item.app_metadata_twitter_id);
                 item.app_metadata_tng_universal_id !== null &&
-                  (item.app_metadata.universal_id =
+                  (item.app_metadata.tng_universal_id =
                     item.app_metadata_tng_universal_id);
 
                 delete item.app_metadata_tng_id;
