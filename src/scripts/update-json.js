@@ -54,6 +54,25 @@ module.exports = {
                 delete item.app_metadata_tng_universal_id;
               }
 
+              //Add new, custom_password_hash key and provide in the values
+              if (!item.custom_password_hash) {
+                item.custom_password_hash = {
+                  algorithm: 'md5',
+                  hash: {
+                    value: item.hashed_password,
+                    encoding: 'hex',
+                  },
+                  salt: {
+                    value: item.salt_value,
+                    encoding: 'utf8',
+                    position: 'prefix',
+                  },
+                };
+
+                delete item.hashed_password;
+                delete item.salt_value;
+              }
+
               return item;
             });
 
