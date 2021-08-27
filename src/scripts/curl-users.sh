@@ -7,7 +7,7 @@
 # Be sure to update the tenant url to point to the correct auth0 tenant
 
 count=0;
-targetFolder=../split-to-300k/original-300k-files;
+targetFolder=../split-to-300k/300k-done/;
 # Import variables from this file.  Update the varibales in this file with different tenants and a new token from Auth0 if needed
 source auth0_upload_variables.txt;
 
