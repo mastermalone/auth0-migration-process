@@ -47,7 +47,7 @@ function startUserUpload () {
   # Loop to upload each file every 2 minutes to Auth0
   for json_file in $targetFolder/*; do
     curlUsersToAuth0 $json_file
-    sleep 2m
+    sleep 300
   done
   echo "The Process has finished. $count files have been uploaded to Auth0.";
   # watch -n 3 -x bash -c curlUsersToAuth0;
