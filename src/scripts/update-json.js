@@ -39,18 +39,28 @@ module.exports = {
                 item.app_metadata.tng_id = item.app_metadata_tng_id;
 
                 // If there are social login ID's, or the universal ID add them
-                item.app_metadata_facebook_id !== null &&
-                  (item.app_metadata.facebook_id =
-                    item.app_metadata_facebook_id);
-                item.app_metadata_twitter_id !== null &&
-                  (item.app_metadata.twitter_id = item.app_metadata_twitter_id);
+                if (
+                  typeof item.app_metadata_facebook_ids !== 'object' &&
+                  typeof item.app_metadata_facebook_ids.length
+                ) {
+                  item.app_metadata.facebook_ids =
+                    item.app_metadata_facebook_ids.split(',');
+                }
+                if (
+                  typeof item.app_metadata_twitter_ids !== 'object' &&
+                  typeof item.app_metadata_twitter_ids.length
+                ) {
+                  item.app_metadata.twitter_ids =
+                    item.app_metadata_twitter_ids.split(',');
+                }
+
                 item.app_metadata_tng_universal_id !== null &&
                   (item.app_metadata.tng_universal_id =
                     item.app_metadata_tng_universal_id);
 
                 delete item.app_metadata_tng_id;
-                delete item.app_metadata_facebook_id;
-                delete item.app_metadata_twitter_id;
+                delete item.app_metadata_facebook_ids;
+                delete item.app_metadata_twitter_ids;
                 delete item.app_metadata_tng_universal_id;
               }
 
